@@ -1,4 +1,5 @@
 var express =require('express'); 
+var cors =require('cors');
 var user = require('./router/user');
 var product = require('./router/products');
 var order = require('./router/order');
@@ -6,6 +7,7 @@ var logger = require('morgan');
 var category = require('./router/category');
 var db=require('./models/db') ; 
 var app=express() ;
+app.use(cors());
 var bodyParser =require('body-parser') ;
 var VerifyToken= require('./verifyToken');
 const config =require('./config.json')
@@ -14,7 +16,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 
 app.use("/users",user);
-app.use("/prods",VerifyToken,product);
+app.use("/prods",product);
 app.use("/orders",VerifyToken,order);
 app.use("/categories",VerifyToken,category);
 
