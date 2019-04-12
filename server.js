@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 
 app.use("/users",user);
-app.use("/prods",product);
+app.use("/prods",VerifyToken,product);
 app.use("/orders",VerifyToken,order);
 app.use("/categories",VerifyToken,category);
 
